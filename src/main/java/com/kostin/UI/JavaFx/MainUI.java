@@ -16,10 +16,9 @@ public class MainUI extends Application {
         stage.setTitle("Cities Game");
         stage.setScene(new Scene(root));
         stage.setResizable( false );
-        stage.setOnCloseRequest( windowEvent -> {stage.close();} );
+        stage.setOnCloseRequest( windowEvent -> {stage.close(); System.exit( 0 );} );
         stage.show();
     }
-
 
     public static void main(String[] args) {
         launch( args );

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -144,7 +145,7 @@
                   <MenuItem fx:id="FiveUser" mnemonicParsing="false" text="5 Игроков" />
               </items>
                <font>
-                  <Font name="Gabriola" size="18.0" />
+                  <Font name="Gadugi" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -173,7 +174,7 @@
                   <MenuItem fx:id="FivePC" mnemonicParsing="false" text="5 Компов" />
                </items>
                <font>
-                  <Font name="Gabriola" size="18.0" />
+                  <Font name="Gadugi" size="13.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -227,7 +228,7 @@
       </AnchorPane>
       <AnchorPane fx:id="MainAnchorPane" layoutX="271.0" prefHeight="459.0" prefWidth="474.0" style="-fx-background-color: FFFFFF;" visible="false">
          <children>
-            <TextArea fx:id="MainTextAreaForEveryThingTexts" editable="false" focusTraversable="false" layoutX="17.0" layoutY="20.0" prefHeight="364.0" prefWidth="445.0" text="Привет в игре!!!" wrapText="true">
+            <TextArea fx:id="MainTextAreaForEveryThingTexts" cache="true" editable="false" layoutX="17.0" layoutY="30.0" prefHeight="354.0" prefWidth="445.0" text="Привет в игре!!!" wrapText="true">
                <font>
                   <Font name="Gabriola" size="22.0" />
                </font>
@@ -243,15 +244,19 @@
                      </cursor>
                   </Button>
                   <TextField fx:id="TextFieldForWritingWords" focusTraversable="false" layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="352.0" promptText="Вводи сюда название города" />
-                  <Label fx:id="LabelForExeptionsAndErrors" disable="true" focusTraversable="false" layoutX="72.0" layoutY="31.0" prefHeight="17.0" prefWidth="294.0" text="Label" textFill="RED" visible="false" />
+                  <Label fx:id="LabelForExeptionsAndErrors" focusTraversable="false" layoutX="72.0" layoutY="31.0" prefHeight="17.0" prefWidth="294.0" text="Label" textFill="RED" visible="false" />
                </children>
             </AnchorPane>
+            <Button fx:id="addNewWord" focusTraversable="false" mnemonicParsing="false" prefWidth="183.0" text="Добавить новое слово?" visible="false" />
          </children>
       </AnchorPane>
-      <TextArea fx:id="TextAreaForRulesAndInfo" cacheShape="false" editable="false" focusTraversable="false" layoutX="275.0" layoutY="31.0" prefHeight="394.0" prefWidth="460.0" text="Добро пожаловать в игру!">
+      <TextArea fx:id="TextAreaForRulesAndInfo" cacheShape="false" editable="false" focusTraversable="false" layoutX="275.0" layoutY="31.0" prefHeight="394.0" prefWidth="460.0" text="                Добро пожаловать в Игру Города!!!">
          <font>
-            <Font name="Gabriola" size="27.0" />
+            <Font name="Gadugi" size="16.0" />
          </font>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
       </TextArea>
    </children>
    <cursor>

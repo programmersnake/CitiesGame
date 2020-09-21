@@ -18,7 +18,7 @@ public class ComputerPlayer implements Player {
 
     @SneakyThrows
     @Override
-    public String say(String lastUserWord) {
+    public String say(String w, String lastUserWord) {
         Thread.sleep(1000);
         String word = "";
         if(lastUserWord.equals( "" )) {
@@ -27,8 +27,8 @@ public class ComputerPlayer implements Player {
             word = checkerWords.getWord( lastUserWord );
         System.out.println( "Computer [" + id + "]: " + word );
         if(word.equals( "Я больше не знаю слов эту букву" ))
-            System.exit( 0 );
-        return word;
+            return "Я больше не знаю слов эту букву";
+        return "Computer [" + id + "]: "+word;
     }
 
 }

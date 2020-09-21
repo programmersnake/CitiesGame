@@ -3,13 +3,8 @@ package com.kostin.Data;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class CitiesHandler implements DataHandler {
@@ -31,8 +26,9 @@ public class CitiesHandler implements DataHandler {
     @SneakyThrows
     private void getAllCitiesFromFile() {
         char firstCharacter = 'А';
+        File file = new File (getResourcePath("\\allCities"));
         List<String> list = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader( new File (getResourcePath("\\allCities"))));
+        BufferedReader reader = new BufferedReader(new FileReader( file ));
         while(reader.ready()) {
             String city = reader.readLine();
             if (city.startsWith( String.valueOf( firstCharacter ) )) {
@@ -47,8 +43,7 @@ public class CitiesHandler implements DataHandler {
         citiesNames.put( firstCharacter, list );
     }
 
-
-    String getResourcePath(String file) {
+    private String getResourcePath(String file) {
         return getClass().getResource("/").getPath() + "static_files/" + file;
     }
 
@@ -76,6 +71,7 @@ public class CitiesHandler implements DataHandler {
 
     @Override
     public Map<Character, List<String>> getCitiesNames() {
+        getAllCitiesFromFile();
         return citiesNames;
     }
 
@@ -87,5 +83,39 @@ public class CitiesHandler implements DataHandler {
     @Override
     public String getRules() {
         return rules;
+    }
+
+    @SneakyThrows
+    @Override
+    public void addNewWordToFile(String newWord) {
+        char firstChar = newWord.charAt( 0 );
+        if(citiesNames.containsKey( firstChar )) {
+            List<String> list = citiesNames.get( firstChar );
+            if(!list.contains( newWord )) {
+                list.add( newWord );
+                citiesNames.put( firstChar, list );
+                saveNewWordAtFile();
+            }
+        }
+    }
+
+    @SneakyThrows
+    private void saveNewWordAtFile() {
+        BufferedWriter writer = new BufferedWriter( new FileWriter( new File( getResourcePath( "\\allCities" ) ) ) );
+        writer.flush();
+        writer.write( getAllCitiesName() );
+        writer.close();
+    }
+
+    private String getAllCitiesName() {
+        String allCitiesName="";
+        for(List<String> listCities : citiesNames.values()) {
+            for(String city : listCities) {
+                if(!allCitiesName.equals( "" ) )
+                    allCitiesName+=System.lineSeparator();
+                allCitiesName+=city;
+            }
+        }
+        return allCitiesName;
     }
 }

@@ -7,6 +7,8 @@ public class Game extends Thread {
     private HandlerUserCommandInterface handlerUserCommand;
     private Player[] players;
 
+    public Game() {}
+
     public Game(int numberOfUserPlayer, int numberOfComputerPlayer) {
         init( numberOfUserPlayer, numberOfComputerPlayer );
     }
@@ -23,7 +25,7 @@ public class Game extends Thread {
         System.out.println( "/end   - Для того, чтобы завершить игру" );
     }
 
-    private void createPlayers(int numberOfUserPlayer, int numberOfComputerPlayer) {
+    public Player[] createPlayers(int numberOfUserPlayer, int numberOfComputerPlayer) {
         if (numberOfUserPlayer < 0)
             numberOfUserPlayer = 0;
         if (numberOfComputerPlayer < 0)
@@ -39,6 +41,7 @@ public class Game extends Thread {
                 players[i] = new ComputerPlayer(i+1-numberOfUserPlayer);
             }
         }
+        return players;
     }
 
     @Override
@@ -47,13 +50,26 @@ public class Game extends Thread {
         String theLatestWord = "";
         boolean isGame = false;
         while (true) {
+
+            System.out.print( "user: " );
+            String userCommand = scanner.nextLine();
             if (!isGame) {
-                System.out.print( "user: " );
-                String userCommand = scanner.nextLine();
                 isGame = handlerUserCommand.handle( userCommand );
             } else {
                 for (Player player : players) {
-                    theLatestWord = player.say( theLatestWord );
+                    String tempTheLatestWord = player.say(userCommand, theLatestWord );
+                    if(tempTheLatestWord.equals( "Такого города нет" )){
+                        while (true) {
+                            System.out.print( "user: " );
+                            String usersssCommand = scanner.nextLine();
+                            String tempsssTheLatestWord = player.say(usersssCommand, theLatestWord );
+                            if(!tempTheLatestWord.equals( "Такого города нет" )) {theLatestWord = tempsssTheLatestWord; break;}
+                            else {continue;}
+                        }
+                    }
+                    else {
+                        theLatestWord = tempTheLatestWord;
+                    }
                 }
             }
         }

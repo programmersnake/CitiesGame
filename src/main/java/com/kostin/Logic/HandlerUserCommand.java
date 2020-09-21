@@ -8,12 +8,10 @@ import java.util.Map;
 
 public class HandlerUserCommand implements HandlerUserCommandInterface{
     private DataHandler handler;
-    private Map<Character, List<String>> citiesNames;
     private boolean isStart = false;
 
     public HandlerUserCommand() {
         handler = new CitiesHandler();
-        citiesNames = handler.getCitiesNames();
     }
 
     @Override

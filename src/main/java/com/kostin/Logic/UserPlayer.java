@@ -13,13 +13,10 @@ public class UserPlayer implements Player {
     }
 
     @Override
-    public String say(String lastUserWord) {
+    public String say(String myWord, String lastUserWord) {
         lastUserWord = lastUserWord.toUpperCase();
-        Scanner scanner = new Scanner(System.in);
-        String myWord = "";
         while(true) {
             System.out.print( "User ["+id+"]: " );
-            myWord = scanner.nextLine();
 
             int index = lastUserWord.length()-1;
             if (lastUserWord.endsWith( "ь" ))
@@ -30,11 +27,15 @@ public class UserPlayer implements Player {
                 index = lastUserWord.length()-2;
 
             if(lastUserWord.isEmpty() || myWord.startsWith( String.valueOf( lastUserWord.charAt(index)))) {
-                boolean b = checkerWords.checkAndDeleteIfThisWordIsTrueInAllCitiesNames( myWord );
-                if(b==true) break;
+                boolean b = checkerWords.checkAndDeleteIfThisWordIsTrueInAllCitiesNames( myWord ).equals( "Yes" );
+                if(b==true)
+                    break;
+                else if(checkerWords.checkAndDeleteIfThisWordIsTrueInAllCitiesNames( myWord ).equals( "Такого города нет либо такой команды нет" ))
+                    return "Такого города нет";
                 else continue;
             } else {
                 System.err.println( "Слово не начинается на последнюю букву предыдущего слова! [" + lastUserWord.charAt( index ) + "]" );
+                return "Слово не начинается на последнюю букву предыдущего слова! [" + lastUserWord.charAt( index ) + "]";
             }
         }
 

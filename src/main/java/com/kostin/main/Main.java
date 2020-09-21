@@ -7,10 +7,9 @@ import com.kostin.UI.JavaFx.MainUI;
 public class Main {
 
     public static void main(String[] args) {
-        //Game game = new Game( 0,4 );
+        //Game game = new Game( 1,4 );
         //game.start();
-        //MainUI mainUI = new MainUI();
-        MainController controller = new MainController();
+        MainUI mainUI = new MainUI();
 
     }
 }

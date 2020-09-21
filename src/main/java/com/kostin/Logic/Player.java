@@ -1,5 +1,8 @@
 package com.kostin.Logic;
 
-interface Player {
-    String say(String lastUserWord);
+public interface Player {
+    String say(String myWord, String lastUserWord);
+    default int getId() {
+        return -1;
+    }
 }

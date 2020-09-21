@@ -9,4 +9,6 @@ public interface DataHandler {
     String getInfo();
     String getRules();
 
+    void addNewWordToFile(String newWord);
+
 }
