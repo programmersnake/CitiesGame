@@ -7,6 +7,7 @@ public class ComputerPlayerWithUI implements Player {
     public ComputerPlayerWithUI(int id) {
         checkerWords = new CheckerWords();
         this.id = id;
+        System.out.println("Computer "+id+" was created");
     }
 
     @Override
@@ -20,4 +21,6 @@ public class ComputerPlayerWithUI implements Player {
 
         return myWordPC;
     }
+
+
 }

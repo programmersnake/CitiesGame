@@ -136,7 +136,7 @@ public class MainController extends Application {
                 players[i] = new UserPlayerWithUI(i+1);
             }
             for (int i = numberOfUserPlayer; i < numberOfComputerPlayer + numberOfUserPlayer; i++) {
-                players[i] = new ComputerPlayerWithUI(i+1-numberOfUserPlayer);
+                players[i] = new ComputerPlayerWithUI(i+1);
             }
         }
         return players;
@@ -223,9 +223,9 @@ public class MainController extends Application {
                                     MainTextAreaForEveryThingTexts.setText( globalTextForGame );
                                     MainTextAreaForEveryThingTexts.selectEnd();
                                 } else {
-                                    System.out.println("Computer [" + (players[Hod].getId()+2) + "]: " + tempUseWord);
+                                    System.out.println("Computer [" + (Hod+1) + "]: " + tempUseWord);
                                     lastUsedWord.set( tempUseWord );
-                                    globalTextForGame += System.lineSeparator() + "Computer [" + players[Hod].getId() + "]: " + tempUseWord;
+                                    globalTextForGame += System.lineSeparator() + "Computer [" + (Hod+1) + "]: " + tempUseWord;
                                     MainTextAreaForEveryThingTexts.setText( globalTextForGame );
                                     Hod++;
                                 }
